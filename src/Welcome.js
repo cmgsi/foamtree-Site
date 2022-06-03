@@ -19,7 +19,7 @@ export const Welcome = ({ visible, exampleClicked }) => {
       <article className="Welcome" style={{display: visible ? "block" : "none" }}>
         <div>
           <div className="intro">
-            <h1>Spreadsheet 🡒 FoamTree</h1>
+            <h1>Visualização de dados</h1>
 
             <h4>
               Turn a spreadsheet into an interactive treemap visualization!

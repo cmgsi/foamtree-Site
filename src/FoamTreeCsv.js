@@ -143,7 +143,7 @@ const FoamTreeCsv = () => {
                            exportJsonClicked={exportJson} exportJsonPClicked={exportJsonP} />
             <hr/>
             <div style={{textAlign: "right", marginBottom: "0.25em"}}>
-              <ButtonLink onClick={() => logStore.entries = []}>clear log</ButtonLink>
+              <ButtonLink onClick={() => logStore.entries = []}>limpar os logs</ButtonLink>
             </div>
             <OperationLog log={logStore} />
           </div>

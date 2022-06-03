@@ -19,11 +19,11 @@ const settings = {
           id: "stacking",
           type: "enum",
           ui: "radio",
-          label: "Stacking",
+          label: "Arranjo",
           options: [
-            { label: "Flattened, description at the top", value: "flattened-stab" },
-            { label: "Flattened, floating description", value: "flattened-floating" },
-            { label: "Hierarchical", value: "hierarchical" },
+            { label: "Descrição no topo", value: "flattened-stab" },
+            { label: "Descrição achatada e flutuante", value: "flattened-floating" },
+            { label: "Hierárquico", value: "hierarchical" },
           ]
         },
         {
@@ -32,14 +32,14 @@ const settings = {
           ui: "radio",
           label: "Layout",
           options: [
-            { label: "Polygonal", value: "relaxed" },
-            { label: "Rectangular", value: "squarified" },
+            { label: "Retangular", value: "squarified" },
+            { label: "Polígono", value: "relaxed" }, 
           ]
         },
         {
           id: "showPathInTitleBar",
           type: "boolean",
-          label: "Show hierarchy path on hover"
+          label: "Mostrar hierarquia ao posicionar o mouse sobre cluster."
         }
       ]
     }
@@ -48,12 +48,10 @@ const settings = {
 
 const SettingsPanel = view(({ welcomeClicked, exportJsonClicked, exportJsonPClicked }) => (
     <>
-      <h3>Spreadsheet 🡒 FoamTree</h3>
+      <h3>Visualização de Dados</h3>
 
       <p>
-        To visualize a new spreadsheet, drag and drop it to this window. For more information about
-        the required format, go back to
-        the <ButtonLink onClick={e => { e.preventDefault(); welcomeClicked() }}>welcome screen</ButtonLink>.
+      Para visualizar uma nova planilha, arraste e solte-a nesta janela.  <ButtonLink onClick={e => { e.preventDefault(); welcomeClicked() }}>Bem-vindo / Ajuda</ButtonLink>.
       </p>
 
       <hr/>
@@ -63,10 +61,10 @@ const SettingsPanel = view(({ welcomeClicked, exportJsonClicked, exportJsonPClic
       <hr/>
 
       <div className="Settings">
-        <FormGroup label="Export as" inline={true}>
+        <FormGroup label="Exportar" inline={true}>
           <div style={{ lineHeight: "30px"}}>
-            <ButtonLink onClick={e => { e.preventDefault(); exportJsonClicked() }}>FoamTree JSON (*.json)</ButtonLink>
-            <ButtonLink onClick={e => { e.preventDefault(); exportJsonPClicked() }}>FoamTree JSON-P (*.js)</ButtonLink>
+            <ButtonLink onClick={e => { e.preventDefault(); exportJsonClicked() }}>allData JSON (*.json)</ButtonLink>
+            <ButtonLink onClick={e => { e.preventDefault(); exportJsonPClicked() }}>allData JSON-P (*.js)</ButtonLink>
           </div>
         </FormGroup>
       </div>
