@@ -1,7 +1,9 @@
-# Spreadsheet 🡒 FoamTree
+# Visualização de dados
 
-Turn a spreadsheet into an interactive treemap visualization!
+* `npm install`
 
-This an example application based on [Carrot Search FoamTree](https://carrotsearch.com/foamtree/) that lets you visualize hierarchical data from a specially-crafted Excel, OpenOffice or CSV spreadsheet.
+* `npm start`
 
----
+* http://localhost:3000/
+
+#
