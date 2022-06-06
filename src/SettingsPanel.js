@@ -61,14 +61,16 @@ function App() {
   );
 }
 
-const SettingsPanel = view(({ welcomeClicked, exportJsonClicked, exportJsonPClicked, App }) => (
+const SettingsPanel = view(({ welcomeClicked, exportJsonClicked, exportJsonPClicked}) => (
   <>
     <h3>Visualização de Dados</h3>
 
     <p>
       Para visualizar uma nova planilha, arraste e solte-a nesta janela.  <ButtonLink onClick={e => { e.preventDefault(); welcomeClicked() }}>Bem-vindo / Ajuda</ButtonLink>.
     </p>
-
+    <div className="App">
+        <App />
+      </div>
     <hr />
 
     <p>Escolha a origem dos dados:

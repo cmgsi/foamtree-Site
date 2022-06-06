@@ -13,6 +13,7 @@ import { logStore } from "./stores.js";
 import XLSX from "xlsx";
 import './FoamTreeCsv.css';
 import { ButtonLink } from "./carrotsearch/ui/ButtonLink.js";
+import App from "./App";
 
 const baseStyle = {
   borderWidth: 4,
@@ -42,7 +43,7 @@ const rejectStyle = {
 };
 
 const FoamTreeCsv = () => {
-  const [ dataObject, setDataObject ] = useState({});
+  const [dataObject, setDataObject] = useState({});
   const loadSpreadsheet = (buffer, fileName) => {
     logStore.entries.push({ message: `Parsing ${fileName}.`, code: "I001" });
     window.setTimeout(() => {
@@ -50,8 +51,8 @@ const FoamTreeCsv = () => {
       const sheet = workbook.Sheets[workbook.SheetNames[0]];
       const parser = Worksheet2FoamTree.parse(sheet);
       parser.getLog()
-          .map(l => ({ code: l.code, message: Worksheet2FoamTree.getMessage(l) }))
-          .forEach(e => logStore.entries.push(e));
+        .map(l => ({ code: l.code, message: Worksheet2FoamTree.getMessage(l) }))
+        .forEach(e => logStore.entries.push(e));
 
       const propertyNames = parser.getPropertyNames();
       const dataObject = prepareDataObject(propertyNames, parser.getDataObject());
@@ -98,8 +99,8 @@ const FoamTreeCsv = () => {
     setDataObject({ groups: [] });
     window.setTimeout(() => {
       fetch(`examples/${name}`)
-          .then(response => response.arrayBuffer())
-          .then(response => loadSpreadsheet(response, name));
+        .then(response => response.arrayBuffer())
+        .then(response => loadSpreadsheet(response, name));
     }, 50);
   }, []);
 
@@ -108,7 +109,7 @@ const FoamTreeCsv = () => {
     if (process.env.NODE_ENV !== "production") {
       loadExample(`example.ods`);
     }
-  }, [ loadExample ]);
+  }, [loadExample]);
 
   const foamTreeRef = useRef(undefined);
 
@@ -118,8 +119,8 @@ const FoamTreeCsv = () => {
       forEachDescendant(data, group => {
         delete group["parent"];
       });
-      saveAs(new Blob([ fn(JSON.stringify(data, null, "  ")) ],
-          { type: "application/json;charset=utf-8" }), `foamtree-data.${extesion}`);
+      saveAs(new Blob([fn(JSON.stringify(data, null, "  "))],
+        { type: "application/json;charset=utf-8" }), `foamtree-data.${extesion}`);
     }
   };
 
@@ -127,29 +128,33 @@ const FoamTreeCsv = () => {
     exportFoamTreeData("json");
   }, []);
   const exportJsonP = useCallback(() => {
-    exportFoamTreeData("js",json => {
+    exportFoamTreeData("js", json => {
       return `modelDataAvailable(${json})`;
     });
   }, []);
 
   return (
-      <div {...getRootProps({ style })}>
-        <main className="FoamTreeCsv" style={{visibility: !!dataObject.groups ? "visible" : "hidden"}}>
-          <div className="visualization">
-            <FoamTreePanel dataObject={dataObject} foamTreeRef={foamTreeRef} />
-          </div>
-          <div className="settings">
-            <SettingsPanel welcomeClicked={() => setDataObject({})}
-                           exportJsonClicked={exportJson} exportJsonPClicked={exportJsonP} />
-            <hr/>
-            <div style={{textAlign: "right", marginBottom: "0.25em"}}>
-              <ButtonLink onClick={() => logStore.entries = []}>limpar os logs</ButtonLink>
-            </div>
-            <OperationLog log={logStore} />
-          </div>
-        </main>
-        <Welcome visible={!dataObject.groups} exampleClicked={loadExample} />
+    <div {...getRootProps({ style })}>
+
+      <div className="App">
+        <App />
       </div>
+
+      <main className="FoamTreeCsv" style={{ visibility: !!dataObject.groups ? "visible" : "hidden" }}>
+        <div className="visualization">
+          <FoamTreePanel dataObject={dataObject} foamTreeRef={foamTreeRef} />
+        </div>
+        <div className="settings">
+          <SettingsPanel welcomeClicked={() => setDataObject({})} exportJsonClicked={exportJson} exportJsonPClicked={exportJsonP} />
+          <hr />
+          <div style={{ textAlign: "right", marginBottom: "0.25em" }}>
+            <ButtonLink onClick={() => logStore.entries = []}>limpar os logs</ButtonLink>
+          </div>
+          <OperationLog log={logStore} />
+        </div>
+      </main>
+      <Welcome visible={!dataObject.groups} exampleClicked={loadExample} />
+    </div>
   );
 };
 
