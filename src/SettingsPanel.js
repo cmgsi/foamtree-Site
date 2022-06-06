@@ -5,6 +5,8 @@ import { settingsStore } from "./stores.js";
 import { ButtonLink } from "./carrotsearch/ui/ButtonLink.js";
 import { FormGroup } from "@blueprintjs/core";
 
+import Queries from "./Queries";
+
 
 
 
@@ -50,55 +52,24 @@ const settings = {
   ]
 };
 
-function App() {
 
-  return (
-    <div className='App'>
-      <h1>Geeksforgeeks : How to include an external
-        JavaScript library to ReactJS?</h1>
-
-    </div>
-  );
-}
-
-const SettingsPanel = view(({ welcomeClicked, exportJsonClicked, exportJsonPClicked}) => (
+const SettingsPanel = view(({ welcomeClicked, exportJsonClicked, exportJsonPClicked }) => (
   <>
     <h3>Visualização de Dados</h3>
 
     <p>
       Para visualizar uma nova planilha, arraste e solte-a nesta janela.  <ButtonLink onClick={e => { e.preventDefault(); welcomeClicked() }}>Bem-vindo / Ajuda</ButtonLink>.
     </p>
-    <div className="App">
-        <App />
-      </div>
-    <hr />
 
-    <p>Escolha a origem dos dados:
-      <select id="selectEstado" onchange="toggleMunicipio()">
-        <option value="SP">
-          Estado de São Paulo
-        </option>
-        <option value="Federal">
-          Receitas e despesas do Governo Federal
-        </option>
-      </select>
-    </p>
-    <p>Escolha um município:
-      <select id="selectMunicipio">
-        <option value="todos">Todos
-        </option>
-      </select>
-    </p>
+    <div className="Queries">
+      <Queries />
+    </div>
+    <hr />
 
     <button
       onclick="reloadWithQueryStringVars({'origem':$('#selectEstado').val(),'municipio':$('#selectMunicipio').val()})">Enviar dados</button>
 
     <hr />
-    <div>
-      <script>
-        App();
-      </script>
-    </div>
 
     <Settings settings={settings} get={storeGetter} set={storeSetter} />
 
