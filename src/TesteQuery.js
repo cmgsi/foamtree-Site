@@ -17,7 +17,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> \
 PREFIX bra: <http://www.semanticweb.org/ontologies/OrcamentoPublicoBrasileiro.owl/>"
 
 
-var query = prefix + "select ?nome WHERE { ?mun a bra:Municipio . ?mun dc:title ?nome} limit 10"
+var query = prefix + "select ?nome WHERE { ?mun a bra:Municipio . ?mun dc:title ?nome} "
 
 const endpointUrl = 'http://cassidy.gpopai.usp.br:8209/OrcamentoGovernoMunicipiosSP/query'
 

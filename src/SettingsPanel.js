@@ -67,7 +67,7 @@ const SettingsPanel = view(({ welcomeClicked, exportJsonClicked, exportJsonPClic
     <hr />
 
     <button
-      onClick="reloadWithQueryStringVars({'origem':$('#selectEstado').val(),'municipio':$('#selectMunicipio').val()})">Enviar dados</button>
+      onclick="reloadWithQueryStringVars({'origem':$('#selectEstado').val(),'municipio':$('#selectMunicipio').val()})">Enviar dados</button>
 
     <hr />
 
