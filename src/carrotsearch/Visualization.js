@@ -65,6 +65,6 @@ export function Visualization(props) {
   }, [ props.impl ]);
 
   return (
-    <div ref={element} style={{ position: "absolute", top: 300, bottom: 0, left: 0, right: 0 }}/>
+    <div ref={element} style={{ position: "absolute", top: 140, bottom: 0, left: 0, right: 0 }}/>
   );
 }
