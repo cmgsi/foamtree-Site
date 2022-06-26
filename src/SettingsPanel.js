@@ -9,8 +9,6 @@ import Queries from "./Queries";
 
 
 
-
-
 const storeGetter = (setting) => settingsStore[setting.id];
 const storeSetter = (setting, value) => settingsStore[setting.id] = value;
 
