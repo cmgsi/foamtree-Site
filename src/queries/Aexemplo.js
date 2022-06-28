@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import { start } from './TesteQuery'
+import { start } from './queries/TesteQuery'
 
 import React, { useEffect, useState } from 'react';
 
